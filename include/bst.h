@@ -2,12 +2,11 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <stdio.h>
-#include <conio.h>
 #include <algorithm>
+#include <iostream>
 #include <string>
 #include  <fstream>
 #include <utility>
-#include <iostream>
 #include  <cstdlib>
 struct Word {
   char word[40];
