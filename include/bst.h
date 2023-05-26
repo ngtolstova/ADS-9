@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
+using namespace std;
 struct Word {
   char word[40];
   int len;
@@ -93,7 +94,7 @@ template <typename T>
     int search(const char *look) {
       struct Word wd;
       wd.len = strlen(look);
-      snprintf(wd.word, sizeof(tmp->word), look);
+      snprintf(wd.word, sizeof(wd.word), look);
       int path = compare(&unit->wd, &wd);
       if (path == 1) {
         if (unit->right != nullptr) {
