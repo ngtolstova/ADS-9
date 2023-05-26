@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
-#include  <fstream>
+#include <fstream>
 #include <utility>
 struct Word {
   char word[40];
