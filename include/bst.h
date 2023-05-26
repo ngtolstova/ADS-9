@@ -2,6 +2,7 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <stdio.h>
+#include <conio.h>
 #include <algorithm>
 #include <string>
 #include  <fstream>
