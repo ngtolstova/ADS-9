@@ -1,6 +1,8 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
+#include <algorithm>
+#include <string>
 struct Word {
   char word[40];
   int len;
@@ -17,7 +19,7 @@ template <typename T>
    private:
     int compare(struct Word* Root, struct Word* Read) {
       int i = 0, circle = max(Read->len, Root->len), result = 0;
-      while(i<circle) {
+      while (i < circle) {
         if (Read->word[i] > Root->word[i]) {
           result = 1;
           break;
@@ -31,15 +33,15 @@ template <typename T>
     }
 		int d;
    public:
-		Node* root;
-		Node* unit;
+    Node* root;
+    Node* unit;
     BST() {
-      root=unit=nullptr;
+      root = unit = nullptr;
       d = 0;
     };
     void readWord(ifstream *file, struct Word *tmp) {
       char c;
-      strcpy(tmp->word, "0000000000000000000000000000000000000");
+      snprintf(tmp->word, "0000000000000000000000000000000000000");
       tmp->len = 0;
       while (file->get(c)) {
         if ((c >= 'A' && c <= 'Z')) {
@@ -49,7 +51,9 @@ template <typename T>
         } else if ((c >= 'a' && c <= 'z')) {
           tmp->word[tmp->len] = c;
           tmp->len++;
-        } else if (tmp->len >0) return;
+        } else if (tmp->len >0) {
+          return;
+        }
       }
       if (tmp->len == 0) {
         file->close();
@@ -57,14 +61,14 @@ template <typename T>
       }
       return;
     }
-		void insert(Node *unit, struct Word tmp) {
+    void insert(Node *unit, struct Word tmp) {
       int path = compare(&unit->wd, &tmp);
       if (path == 1) {
         if (unit->right != nullptr) {
           insert(unit->right, tmp);
         } else {
-          unit->right = new Node{ tmp,1,nullptr,nullptr,unit->h+1};
-          d = max(d,unit->h+1);
+          unit->right = new Node{ tmp, 1, nullptr, nullptr, unit->h+1};
+          d = max(d, unit->h+1);
           return;
         }
       }
@@ -72,8 +76,8 @@ template <typename T>
         if (unit->left != nullptr) {
           insert(unit->left, tmp);
         } else {
-          unit->left = new Node{ tmp,1,nullptr,nullptr,unit->h+1};
-          d=max(d,unit->h+1);
+          unit->left = new Node{ tmp, 1, nullptr, nullptr, unit->h+1};
+          d = max(d, unit->h+1);
           return;
         }
       }
@@ -82,10 +86,10 @@ template <typename T>
       }
       return;
     }
-		int search( const char *look) {
+    int search( const char *look) {
       struct Word wd;
       wd.len = strlen(look);
-      strcpy(wd.word, look);
+      snprintf(wd.word, look);
       int path = compare(&unit->wd, &wd);
       if (path == 1) {
         if (unit->right != nullptr) {
