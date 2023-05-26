@@ -47,7 +47,7 @@ template <typename T>
     }
     void readWord(ifstream *file, struct Word *tmp) {
       char c;
-      snprintf (tmp->word, 40, "00000000000000000000000000000000000000000");
+      snprintf(tmp->word, sizeof(tmp->word), "00000000000000000000000000000000000000000");
       tmp->len = 0;
       while (file->get(c)) {
         if ((c >= 'A' && c <= 'Z')) {
@@ -95,7 +95,7 @@ template <typename T>
     int search(const char *look) {
       struct Word wd;
       wd.len = strlen(look);
-      snprintf (wd.word, 40, look);
+      snprintf(wd.word, sizeof(tmp->word), look);
       int path = compare(&unit->wd, &wd);
       if (path == 1) {
         if (unit->right != nullptr) {
