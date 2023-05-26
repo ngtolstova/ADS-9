@@ -1,6 +1,6 @@
 // Copyright 2021 NNTU-CS
 #include "bst.h"
-using namespace std;
+
 BST<std::string> makeTree(const char* filename) {
   struct Word buf;
   BST <std::string> tree;
