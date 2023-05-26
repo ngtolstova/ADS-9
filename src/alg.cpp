@@ -3,7 +3,7 @@
 BST<std::string> makeTree(const char* filename) {
   struct Word buf;
   BST <std::string> tree;
-  fstream file;
+  std::fstream file;
   file.open(filename);
   if (!file) {
     return tree;
