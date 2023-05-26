@@ -93,7 +93,10 @@ template <typename T>
     }
     int search(const char *look) {
       struct Word wd;
-      snprintf(wd.word, sizeof(wd.word), look);
+      std::size_t L= std::strlen(look);
+      wd.len = L;
+      for (int i = 0; i < L; i++)
+        wd.word[i] = *(look+i);
       int path = compare(&unit->wd, &wd);
       if (path == 1) {
         if (unit->right != nullptr) {
@@ -114,7 +117,7 @@ template <typename T>
     }
     int mydepth(Node*) {
       if (root == nullptr) return 0;
-      return 1 + max(mydepth(root->left), mydepth(root->right));
+      return 1 + std::max(mydepth(root->left), mydepth(root->right));
     }
     int getD() {
       return d;
