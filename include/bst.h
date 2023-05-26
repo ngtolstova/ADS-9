@@ -6,6 +6,7 @@
 #include  <fstream>
 #include <iostream>
 #include  <cstdlib>
+#include <stdio.h>
 struct Word {
   char word[40];
   int len;
