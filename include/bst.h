@@ -1,10 +1,10 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
+#include <ifstream>
 #include <algorithm>
 #include <iostream>
 #include <string>
-#include <fstream>
 #include <utility>
 struct Word {
   char word[40];
@@ -43,7 +43,7 @@ template <typename T>
       root = unit = nullptr;
       d = 0;
     }
-    void readWord(fstream *file, struct Word *tmp) {
+    void readWord(ifstream *file, struct Word *tmp) {
       char c;
       snprintf(tmp->word, sizeof(tmp->word), "00000000000000000000000000000000000000000");
       tmp->len = 0;
