@@ -1,13 +1,11 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
-#include <stdio.h>
 #include <algorithm>
 #include <iostream>
 #include <string>
 #include  <fstream>
 #include <utility>
-#include  <cstdlib>
 struct Word {
   char word[40];
   int len;
@@ -23,7 +21,7 @@ template <typename T>
   class BST {
    private:
     int compare(struct Word* Root, struct Word* Read) {
-      int i = 0, circle = max(Read->len, Root->len), result = 0;
+      int i = 0, circle = std::max(Read->len, Root->len), result = 0;
       while (i < circle) {
         if (Read->word[i] > Root->word[i]) {
           result = 1;
@@ -45,7 +43,7 @@ template <typename T>
       root = unit = nullptr;
       d = 0;
     }
-    void readWord(ifstream *file, struct Word *tmp) {
+    void readWord(fstream *file, struct Word *tmp) {
       char c;
       snprintf(tmp->word, sizeof(tmp->word), "00000000000000000000000000000000000000000");
       tmp->len = 0;
@@ -74,7 +72,7 @@ template <typename T>
           insert(unit->right, tmp);
         } else {
           unit->right = new Node{ tmp, 1, nullptr, nullptr, unit->h+1};
-          d = max(d, unit->h+1);
+          d = std::max(d, unit->h+1);
           return;
         }
       }
@@ -83,7 +81,7 @@ template <typename T>
           insert(unit->left, tmp);
         } else {
           unit->left = new Node{ tmp, 1, nullptr, nullptr, unit->h+1};
-          d = max(d, unit->h+1);
+          d = std::max(d, unit->h+1);
           return;
         }
       }
