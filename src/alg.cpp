@@ -1,12 +1,12 @@
 // Copyright 2021 NNTU-CS
 #include <iostream>
 #include <string>
-#include  <fstream>
-#include  "bst.h"
+#include <ifstream>
+#include "bst.h"
 BST<std::string> makeTree(const char* filename) {
   struct Word buf;
   BST <std::string> tree;
-  fstream file;
+  ifstream file;
   file.open(filename);
   if (!file) {
     return tree;
