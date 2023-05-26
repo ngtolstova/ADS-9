@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <string>
 #include  <fstream>
+#include <utility>
 #include <iostream>
 #include  <cstdlib>
 #include <stdio.h>
@@ -46,7 +47,7 @@ template <typename T>
     }
     void readWord(ifstream *file, struct Word *tmp) {
       char c;
-      snprintf(tmp->word, "0000000000000000000000000000000000000");
+      strcpy(tmp->word, "0000000000000000000000000000000000000");
       tmp->len = 0;
       while (file->get(c)) {
         if ((c >= 'A' && c <= 'Z')) {
@@ -94,7 +95,7 @@ template <typename T>
     int search(const char *look) {
       struct Word wd;
       wd.len = strlen(look);
-      snprintf(wd.word, look);
+      strcpy(wd.word, look);
       int path = compare(&unit->wd, &wd);
       if (path == 1) {
         if (unit->right != nullptr) {
