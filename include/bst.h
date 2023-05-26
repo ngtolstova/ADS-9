@@ -17,7 +17,7 @@ struct Node {
 template <typename T>
   class BST {
    private:
-    int compare(struct Word* Root, struct Word* Read) {
+    int BST<std::string>::compare(struct Word* Root, struct Word* Read) {
       int i = 0, circle = max(Read->len, Root->len), result = 0;
       while (i < circle) {
         if (Read->word[i] > Root->word[i]) {
@@ -31,7 +31,8 @@ template <typename T>
       }
       return result;
     }
-		int d;
+    int d;
+
    public:
     Node* root;
     Node* unit;
@@ -39,7 +40,7 @@ template <typename T>
       root = unit = nullptr;
       d = 0;
     };
-    void readWord(ifstream *file, struct Word *tmp) {
+    void BST<std::string>::readWord(ifstream *file, struct Word *tmp) {
       char c;
       snprintf(tmp->word, "0000000000000000000000000000000000000");
       tmp->len = 0;
@@ -61,7 +62,7 @@ template <typename T>
       }
       return;
     }
-    void insert(Node *unit, struct Word tmp) {
+    void BST<std::string>::insert(Node *unit, struct Word tmp) {
       int path = compare(&unit->wd, &tmp);
       if (path == 1) {
         if (unit->right != nullptr) {
@@ -86,7 +87,7 @@ template <typename T>
       }
       return;
     }
-    int search( const char *look) {
+    int BST<std::string>::search( const char *look) {
       struct Word wd;
       wd.len = strlen(look);
       snprintf(wd.word, look);
@@ -105,19 +106,19 @@ template <typename T>
       }
       return unit->freq;
     }
-		int depth() {
+    int BST<std::string>::depth() {
       return mydepth(root)-1;
     }
-		int mydepth(Node*) {
+    int BST<std::string>::mydepth(Node*) {
       if (root == nullptr) return 0;
       return 1 + max(mydepth(root->left), mydepth(root->right));
     }
-		int getD() { 
+    int BST<std::string>::getD() {
       return d;
     }
-		void setD(int a) {
+    void BST<std::string>::setD(int a) {
       d = a;
       return;
-		}
+    }
   };
 #endif  // INCLUDE_BST_H_
