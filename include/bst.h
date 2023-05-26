@@ -46,7 +46,7 @@ template <typename T>
     }
     void readWord(std::fstream *file, struct Word *tmp) {
       char c;
-      snprintf(tmp->word, sizeof(tmp->word), "00000000000000000000000000000000000000000");
+      snprintf(tmp->word, sizeof(tmp->word), "0000000000000000000000000000000000000000");
       tmp->len = 0;
       while (file->get(c)) {
         if ((c >= 'A' && c <= 'Z')) {
