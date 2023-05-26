@@ -61,7 +61,7 @@ template <typename T>
         }
       }
       if (tmp->len == 0) {
-        std::file->close();
+        file->close();
         return;
       }
       return;
