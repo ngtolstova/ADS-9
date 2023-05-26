@@ -18,7 +18,7 @@ BST<std::string> makeTree(const char* filename) {
     if (buf.len == 0) {
       return tree;
     }
-    tree.root = new Node{buf,1, nullptr, nullptr, 1};
+    tree.root = new Node{buf, 1, nullptr, nullptr, 1};
     tree.setD(1);
   }
   while (1) {
