@@ -37,7 +37,14 @@ template <typename T>
       return result;
     }
     int d;
-
+  void deleteTree(Node *unit) {
+    if (unit == nullptr)
+      return;
+     deleteTree(unit->right);
+     deleteTree(unit->left);
+     delete unit;
+     unit = nullptr;
+  }
    public:
     Node* root;
     Node* unit;
@@ -127,5 +134,8 @@ template <typename T>
       d = a;
       return;
     }
+    ~BST() {
+         deleteTree(root);
+     }
   };
 #endif  // INCLUDE_BST_H_
