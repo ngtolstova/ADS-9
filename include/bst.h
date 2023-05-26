@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <cstring>
 struct Word {
   char word[40];
   int len;
@@ -93,7 +94,7 @@ template <typename T>
     }
     int search(const char *look) {
       struct Word wd;
-      std::size_t L= std::strlen(look);
+      std::size_t  L= strlen(look);
       wd.len = L;
       for (int i = 0; i < L; i++)
         wd.word[i] = *(look+i);
