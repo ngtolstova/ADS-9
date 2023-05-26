@@ -44,7 +44,7 @@ template <typename T>
       root = unit = nullptr;
       d = 0;
     }
-    void readWord(fstream *file, struct Word *tmp) {
+    void readWord(std::fstream *file, struct Word *tmp) {
       char c;
       snprintf(tmp->word, sizeof(tmp->word), "00000000000000000000000000000000000000000");
       tmp->len = 0;
@@ -61,7 +61,7 @@ template <typename T>
         }
       }
       if (tmp->len == 0) {
-        file->close();
+        std::file->close();
         return;
       }
       return;
