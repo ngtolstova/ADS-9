@@ -15,7 +15,7 @@ struct Node {
   Node * right;
 };
 template <typename T>
-class BST {
+class BST{
  private:
   int compare(std::string Read, std::string Root) {
     if (Read > Root)
@@ -58,7 +58,6 @@ class BST {
         insert(unit->right, tmp);
       } else {
           unit->right = new Node{tmp, nullptr, nullptr};
-          unit->right->wd.h = unit->wd.h + 1;
           unit->right->wd.freq = 1;
           return;
         }
@@ -68,7 +67,6 @@ class BST {
           insert(unit->left, tmp);
         } else {
             unit->left = new Node{tmp, nullptr, nullptr};
-            unit->left->wd.h = unit->wd.h + 1;
             unit->left->wd.freq = 1;
             return;
           }
@@ -93,12 +91,12 @@ class BST {
       }
     return unit->wd.freq;
   }
-  int depth() {
+  int depth(){
     return mydepth(root) - 1;
   }
-  int mydepth(Node * root) {
+  int mydepth(Node * root){
     if (root == nullptr) return 0;
     return 1 + std::max(mydepth(root->left), mydepth(root->right));
   }
-};
+}
 #endif  // INCLUDE_BST_H_
