@@ -100,5 +100,5 @@ class BST {
     if (root == nullptr) return 0;
     return 1 + std::max(mydepth(root->left), mydepth(root->right));
   }
-};
+}
 #endif  // INCLUDE_BST_H_
