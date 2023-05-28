@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-using namespace std;
+#include <algorithm>
 struct Word {
   string wd;
   int freq;
@@ -16,6 +16,7 @@ struct Node {
 };
 template <typename T>
 class BST {
+  
   private:
   int compare(string Read, string Root) {
     if (Read > Root)
@@ -24,11 +25,11 @@ class BST {
       return -1;
     return 0;
   }
+  
   public:
     Node * root;
     Node * unit;
-    BST()
-    {
+    BST() {
       root = unit = nullptr;
     }
     string readWord(fstream * file) {
@@ -41,8 +42,9 @@ class BST {
           tmp.push_back(c);
         } else if (c >= 'a' && c <= 'z') {
                  tmp.push_back(c);
-               } else if (tmp.length() > 0)
+               } else if (tmp.length() > 0) {
                         return tmp;
+                      }
       }
       if (tmp.length() == 0) {
         file->close();
