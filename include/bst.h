@@ -6,7 +6,7 @@
 #include <string>
 #include <algorithm>
 struct Word {
-  string wd;
+  std::string wd;
   int freq;
 };
 struct Node {
@@ -17,7 +17,7 @@ struct Node {
 template <typename T>
 class BST {
  private:
-  int compare(string Read, string Root) {
+  int compare(std::string Read, std::string Root) {
     if (Read > Root)
       return 1;
     if (Read < Root)
@@ -31,9 +31,9 @@ class BST {
   BST() {
     root = unit = nullptr;
   }
-  string readWord(fstream * file) {
+  std::string readWord(fstream * file) {
     char c;
-    string tmp("");
+    std::string tmp("");
     while (!file->eof()) {
       file->get(c);
       if (c >= 'A' && c <= 'Z') {
@@ -51,7 +51,8 @@ class BST {
       }
     return tmp;
   }
-  void insert(Node * unit, struct Word tmp) {   int path = compare(tmp.wd, unit->wd.wd);
+  void insert(Node * unit, struct Word tmp) {
+    int path = compare(tmp.wd, unit->wd.wd);
     if (path == 1) {
       if (unit->right != nullptr) {
         insert(unit->right, tmp);
@@ -83,17 +84,12 @@ class BST {
       if (unit->right != nullptr) {
         unit = unit->right;
         search(look);
-      } else {
-          cout << "can't find!" << endl;
       }
     }
     if (path == -1) {
       if (unit->left != nullptr) {
         unit = unit->left;
         search(look);
-      } else {
-          cout << "can't find!" << endl;
-        }
       }
     return unit->wd.freq;
   }
