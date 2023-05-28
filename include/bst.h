@@ -31,7 +31,7 @@ class BST {
   BST() {
     root = unit = nullptr;
   }
-  std::string readWord(fstream * file) {
+  std::string readWord(std::fstream * file) {
     char c;
     std::string tmp("");
     while (!file->eof()) {
