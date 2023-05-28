@@ -14,7 +14,7 @@ struct Node {
   Node * left;
   Node * right;
 };
-template<std::string>
+template< typename T >
 class BST {
  private:
   int compare(std::string Read, std::string Root) {
