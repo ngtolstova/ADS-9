@@ -8,9 +8,7 @@ BST<std::string> makeTree(const char* filename) {
   if (tree.root == nullptr) {
     buf.wd = tree.readWord(&file);
     tree.root = new Node{buf, nullptr, nullptr};
-    tree.root->wd.h = 1;
     tree.root->wd.freq = 1;
-    tree.setD(1);
   }
   while (1) {
     buf.wd = tree.readWord(&file);
@@ -22,4 +20,4 @@ BST<std::string> makeTree(const char* filename) {
   }
   tree.unit = tree.root;
   return tree;
-}
+};
