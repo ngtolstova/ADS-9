@@ -1,87 +1,64 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
-#include <cstdlib>
 #include <fstream>
-#include <algorithm>
 #include <iostream>
 #include <string>
-#include <utility>
-#include <cstring>
+using namespace std;
 struct Word {
-  char word[40];
-  int len;
+  string wd;
+  int freq;
 };
 struct Node {
   struct Word wd;
-  int freq;
-  Node *left;
-  Node *right;
-  int h;
+  Node * left;
+  Node * right;
 };
 template <typename T>
-  class BST {
-   private:
-    int compare(struct Word* Root, struct Word* Read) {
-      int i = 0, circle = std::max(Read->len, Root->len), result = 0;
-      while (i < circle) {
-        if (Read->word[i] > Root->word[i]) {
-          result = 1;
-          break;
-        } else if (Read->word[i] < Root->word[i]) {
-          result = -1;
-          break;
-        }
-        i++;
-      }
-      return result;
-    }
-    int d;
-  void deleteTree(Node *unit) {
-    if (unit == nullptr)
-      return;
-     deleteTree(unit->right);
-     deleteTree(unit->left);
-     delete unit;
-     unit = nullptr;
+class BST {
+  private:
+  int compare(string Read, string Root) {
+    if (Read > Root)
+      return 1;
+    if (Read < Root)
+      return -1;
+    return 0;
   }
-   public:
-    Node* root;
-    Node* unit;
-    BST() {
+  public:
+    Node * root;
+    Node * unit;
+    BST()
+    {
       root = unit = nullptr;
-      d = 0;
     }
-    void readWord(std::fstream *file, struct Word *tmp) {
+    string readWord(fstream * file) {
       char c;
-      snprintf(tmp->word, sizeof(tmp->word), "000000000000000000000000000000000000000");
-      tmp->len = 0;
-      while (file->get(c)) {
-        if ((c >= 'A' && c <= 'Z')) {
+      string tmp("");
+      while (!file->eof()) {
+        file->get(c);
+        if (c >= 'A' && c <= 'Z') {
           c = c + 32;
-          tmp->word[tmp->len] = c;
-          tmp->len++;
-        } else if ((c >= 'a' && c <= 'z')) {
-          tmp->word[tmp->len] = c;
-          tmp->len++;
-        } else if (tmp->len >0) {
-          return;
-        }
+          tmp.push_back(c);
+        } else if (c >= 'a' && c <= 'z') {
+                 tmp.push_back(c);
+               } else if (tmp.length() > 0)
+                        return tmp;
       }
-      if (tmp->len == 0) {
+      if (tmp.length() == 0) {
         file->close();
-        return;
+        return tmp;
       }
-      return;
+      return tmp;
     }
-    void insert(Node *unit, struct Word tmp) {
-      int path = compare(&unit->wd, &tmp);
+    void insert(Node * unit, struct Word tmp) {
+      int path = compare (tmp.wd, unit->wd.wd);
       if (path == 1) {
         if (unit->right != nullptr) {
           insert(unit->right, tmp);
         } else {
-          unit->right = new Node{ tmp, 1, nullptr, nullptr, unit->h+1};
-          d = std::max(d, unit->h+1);
+          unit->right = new Node{tmp, nullptr, nullptr};
+          unit->right->wd.h = unit->wd.h + 1;
+          unit->right->wd.freq = 1;
           return;
         }
       }
@@ -89,53 +66,43 @@ template <typename T>
         if (unit->left != nullptr) {
           insert(unit->left, tmp);
         } else {
-          unit->left = new Node{ tmp, 1, nullptr, nullptr, unit->h+1};
-          d = std::max(d, unit->h+1);
+          unit->left = new Node{tmp, nullptr, nullptr};
+          unit->left->wd.h = unit->wd.h + 1;
+          unit->left->wd.freq = 1;
           return;
         }
       }
       if (path == 0) {
-        unit->freq++;
+        unit->wd.freq++;
       }
       return;
     }
-    int search(const char *look) {
-      struct Word wd;
-      std::size_t L = strlen(look);
-      wd.len = L;
-      for (int i = 0; i < L; i++)
-        wd.word[i] = *(look+i);
-      int path = compare(&unit->wd, &wd);
+    int search(const char * look) {
+      int path = compare(look, unit->wd.wd);
       if (path == 1) {
         if (unit->right != nullptr) {
           unit = unit->right;
           search(look);
+        } else {
+          cout << "can't find!" << endl;
         }
       }
       if (path == -1) {
         if (unit->left != nullptr) {
           unit = unit->left;
           search(look);
+        } else {
+          cout << "can't find!" << endl;
         }
       }
-      return unit->freq;
+      return unit->wd.freq;
     }
-    int depth() {
-      return mydepth(root)-1;
-    }
-    int mydepth(Node*) {
-      if (root == nullptr) return 0;
-      return 1 + std::max(mydepth(root->left), mydepth(root->right));
-    }
-    int getD() {
-      return d;
-    }
-    void setD(int a) {
-      d = a;
-      return;
-    }
-    ~BST() {
-         deleteTree(root);
-     }
-  };
+  int depth() {
+    return mydepth(root) - 1;
+  }
+  int mydepth(Node * root) {
+    if (root == nullptr) return 0;
+    return 1 + std::max(mydepth(root->left), mydepth(root->right));
+  }
+};
 #endif  // INCLUDE_BST_H_
