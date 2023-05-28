@@ -78,20 +78,19 @@ class BST {
   }
   int search(const char * look) {
     int path = compare(look, unit->wd.wd);
-    if (path == 1) {
+    if (path == 1)
       if (unit->right != nullptr) {
         unit = unit->right;
         search(look);
       }
-    }
-    if (path == -1) {
+    if (path == -1)
       if (unit->left != nullptr) {
         unit = unit->left;
         search(look);
       }
     return unit->wd.freq;
   }
-  int depth {
+  int depth() {
     return mydepth(root) - 1;
   }
   int mydepth(Node * root) {
@@ -99,5 +98,5 @@ class BST {
       return 0;
     return 1 + std::max(mydepth(root->left), mydepth(root->right));
   }
-}
+};
 #endif  // INCLUDE_BST_H_
