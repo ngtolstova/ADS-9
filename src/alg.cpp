@@ -12,12 +12,12 @@ BST<std::string> makeTree(const char* filename) {
   }
   while (1) {
     buf.wd = tree.readWord(&file);
-    if (buf.wd.length() == 0) {
+    if (buf.wd.length() == 0)
       break;
-    } else {
+    else
       tree.insert(tree.root, buf);
-    }
   }
   tree.unit = tree.root;
   return tree;
-};
+}
+
