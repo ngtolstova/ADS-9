@@ -14,8 +14,8 @@ struct Node {
   Node * left;
   Node * right;
 };
-template <typename T>
-class BST{
+template<std::string>
+class BST {
  private:
   int compare(std::string Read, std::string Root) {
     if (Read > Root)
@@ -91,7 +91,7 @@ class BST{
       }
     return unit->wd.freq;
   }
-  int depth{
+  int depth {
     return mydepth(root) - 1;
   }
   int mydepth(Node * root) {
