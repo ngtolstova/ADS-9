@@ -91,11 +91,12 @@ class BST{
       }
     return unit->wd.freq;
   }
-  int depth(){
+  int depth{
     return mydepth(root) - 1;
   }
-  int mydepth(Node * root){
-    if (root == nullptr) return 0;
+  int mydepth(Node * root) {
+    if (root == nullptr)
+      return 0;
     return 1 + std::max(mydepth(root->left), mydepth(root->right));
   }
 }
