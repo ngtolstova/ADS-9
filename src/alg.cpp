@@ -20,4 +20,3 @@ BST<std::string> makeTree(const char* filename) {
   tree.unit = tree.root;
   return tree;
 }
-}
